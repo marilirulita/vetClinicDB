@@ -13,3 +13,19 @@ CREATE TABLE medical_histories (
     CONSTRAINT "fk_patient" FOREIGN KEY (patient_id) REFERENCES patients (id) ON DELETE SET NULL,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE treatments(
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
+    type varchar, 
+    name varchar);
+
+CREATE TABLE invoices(
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    total_amount decimal,
+    generated_at timestamp,
+    payed_at timestamp,
+    medical_history_id int,
+    CONSTRAINT invoice_medical_fk 
+    FOREIGN KEY(medical_history_id) 
+    REFERENCES medical_histories(id)
+);
