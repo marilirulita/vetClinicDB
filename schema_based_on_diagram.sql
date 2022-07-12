@@ -45,3 +45,14 @@ CREATE TABLE invoice_items(
     REFERENCES treatments(id)
 );
 
+CREATE TABLE medical_histories_treatments(
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    medical_historie_id int,
+    treatment_id int,
+    CONSTRAINT medial_his_fk 
+    FOREIGN KEY(medical_historie_id)
+    REFERENCES medical_histories(id),
+    CONSTRAINT treatment_id_fk 
+    FOREIGN KEY(treatment_id)
+    REFERENCES treatments(id)
+);
